@@ -15,7 +15,13 @@ import okhttp3.RequestBody;
 /**
  * Created by laggu on 2017-07-24.
  */
-
+/**
+ * @file FCMInstanceIDService.java
+ * @breif
+ * Class about FCM service.
+ * If your FCM-token change, send new FCM-token to your connected server.
+ * @author Yehun Park
+ */
 public class FCMInstanceIDService extends FirebaseInstanceIdService {
     private static final String TAG = "MyFirebaseIIDService";
 
@@ -31,24 +37,18 @@ public class FCMInstanceIDService extends FirebaseInstanceIdService {
 
     private void sendRegistrationToServer(String token) {
         // Add custom implementation, as needed.
-
         OkHttpClient client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("Token", token)
                 .build();
 
         //request
-        Request request = new Request.Builder()
-                .url("http://163.152.219.167/fcm/register.php")
-                .post(body)
-                .build();
+        Request request = new Request.Builder().url("http://163.152.219.167/fcm/register.php").post(body).build();
 
         try {
             client.newCall(request).execute();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }

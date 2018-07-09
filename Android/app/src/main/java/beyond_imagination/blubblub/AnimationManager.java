@@ -7,17 +7,27 @@ import android.view.animation.AnimationUtils;
 /**
  * Created by cru65 on 2017-07-27.
  */
-
+/**
+ * @file AnimationManager.java
+ * @breif
+ * Class for management all Animation used in BlubBlub.
+ * @author Yehun Park
+ */
 public class AnimationManager {
+    /****************/
     /*** Variable ***/
+    /****************/
     MainActivity mainActivity;
 
+    // Chatting page open/close
     Animation chattinglayout_open;
     Animation chattinglayout_close;
+
     Animation.AnimationListener animationListener;
 
-
+    /****************/
     /*** Function ***/
+    /****************/
     public AnimationManager(Context context) {
         mainActivity = (MainActivity)context;
 
@@ -44,6 +54,15 @@ public class AnimationManager {
         };
 
         // 애니메이션 등록
+        registerAnimation();
+    }
+
+    /**
+     * @breif
+     * Register all animation here
+     */
+    private void registerAnimation()
+    {
         chattinglayout_open = AnimationUtils.loadAnimation(mainActivity,R.anim.anim_chattinglayout_open);
         chattinglayout_open.setAnimationListener(animationListener);
 
